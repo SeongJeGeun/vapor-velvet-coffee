@@ -1,0 +1,10 @@
+# Node & Temporary files
+node_modules/
+.DS_Store
+*.log
+tmp/
+
+# Review & Raw generations
+review/
+10k-websites/
+.agents/

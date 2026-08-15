@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAPOR & VELVET, The Art of Silent Extraction</title>
+  <meta name="description" content="스모키한 아로마와 부드러운 벨벳 크레마의 미학. 극상의 다크 아티잔 스페셜티 커피, VAPOR & VELVET.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="VAPOR & VELVET: Artisanal Coffee Roasters">
+  <meta property="og:description" content="스모키한 아로마와 묵직한 크레마의 미학. 극상의 다크 아티잔 커피.">
+  <meta property="og:image" content="https://vapor-velvet-coffee.web.app/assets/hero-poster.jpg">
+  <meta property="og:url" content="https://vapor-velvet-coffee.web.app">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Variables & Tokens */
+    :root {
+      --canvas: #090807;
+      --canvas-subtle: #12100e;
+      --panel: #161412;
+      --panel-hover: #1f1b18;
+      --panel-border: rgba(230, 218, 204, 0.08);
+      --accent: #d4af37;
+      --accent-hover: #e5c158;
+      --accent-muted: rgba(212, 175, 55, 0.15);
+      --accent-glow: rgba(212, 175, 55, 0.35);
+      --text-primary: #f5efe6;
+      --text-secondary: #a89f91;
+      --text-muted: #6e6559;
+      --font-display: 'Cinzel', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: var(--canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      overflow-x: clip;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* Ambient Film Grain & Vignette */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(9, 8, 7, 0.6) 100%);
+      z-index: 99;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+
+    .mono-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: rgba(9, 8, 7, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--panel-border);
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .brand-logo .logo-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: var(--text-primary);
+    }
+
+    .brand-logo .logo-sub {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #090807;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.6rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      cursor: pointer;
+      transition: all 0.3s var(--transition-smooth);
+    }
+
+    .btn-cta:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 25px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--panel-border);
+    }
+
+    .btn-outline:hover {
+      background: var(--panel-hover);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Hero Scroll Stage (400vh Pinned) */
+    .hero-scroll-container {
+      position: relative;
+      height: 400vh;
+      width: 100%;
+    }
+
+    .hero-sticky-stage {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--canvas);
+    }
+
+    /* Video & Poster Backdrop */
+    .hero-media-wrapper {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      z-index: 2;
+      transition: opacity 0.8s ease;
+    }
+
+    .hero-sticky-stage.video-ready .hero-video {
+      opacity: 1;
+    }
+
+    .hero-sticky-stage.video-ready .hero-poster {
+      opacity: 0;
+    }
+
+    /* Hero Ambient Gradients & Scrims */
+    .hero-overlay-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(180deg, rgba(9,8,7,0.4) 0%, transparent 20%, transparent 75%, rgba(9,8,7,0.95) 100%);
+      pointer-events: none;
+    }
+
+    /* Loading Ring for Blob Stream */
+    .loading-ring-wrap {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+
+    .hero-sticky-stage.video-ready .loading-ring-wrap {
+      opacity: 0;
+    }
+
+    .loading-ring {
+      width: 44px;
+      height: 44px;
+      transform: rotate(-90deg);
+    }
+
+    .loading-ring circle {
+      cx: 22;
+      cy: 22;
+      r: 18;
+      fill: none;
+      stroke-width: 3;
+    }
+
+    .loading-ring .ring-bg {
+      stroke: rgba(245, 239, 230, 0.1);
+    }
+
+    .loading-ring .ring-fill {
+      stroke: var(--accent);
+      stroke-linecap: round;
+      stroke-dasharray: 113;
+      stroke-dashoffset: var(--ld, 113);
+      transition: stroke-dashoffset 0.15s linear;
+    }
+
+    .loading-text {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    /* Scroll Cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .scroll-cue-arrow {
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+      animation: cuePulse 2s infinite ease-in-out;
+    }
+
+    @keyframes cuePulse {
+      0%, 100% { transform: scaleY(0.4); opacity: 0.3; transform-origin: top; }
+      50% { transform: scaleY(1); opacity: 1; transform-origin: top; }
+    }
+
+    /* Caption Bands Overlay */
+    .hero-captions-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .caption-band {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8vw;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s var(--transition-smooth), transform 0.5s var(--transition-smooth);
+    }
+
+    .caption-band.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .caption-band.band-left {
+      align-items: flex-start;
+      text-align: left;
+      max-width: 480px;
+    }
+
+    .caption-band.band-right {
+      align-items: flex-end;
+      text-align: right;
+      margin-left: auto;
+      max-width: 480px;
+    }
+
+    .caption-band.band-center {
+      align-items: center;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .caption-band .band-headline {
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .caption-band .band-desc {
+      font-size: clamp(0.95rem, 1.3vw, 1.2rem);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Static Hero Fallback (Mobile / Reduced Motion) */
+    @media (max-width: 768px), (prefers-reduced-motion: reduce), (pointer: coarse) {
+      .hero-scroll-container {
+        height: 100vh;
+      }
+      .scroll-cue, .loading-ring-wrap {
+        display: none !important;
+      }
+      .caption-band {
+        display: none !important;
+      }
+      .caption-band.band-static-mobile {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-video {
+        display: none !important;
+      }
+      .hero-poster {
+        opacity: 1 !important;
+      }
+    }
+
+    /* Main Website Content Sections */
+    .section-wrap {
+      position: relative;
+      z-index: 10;
+      padding: 7rem 8vw;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .section-header.center {
+      text-align: center;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+
+    /* Signature Beans Grid */
+    .beans-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .bean-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s var(--transition-smooth);
+    }
+
+    .bean-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-accent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-muted);
+    }
+
+    .bean-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .bean-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--transition-smooth);
+    }
+
+    .bean-card:hover .bean-img {
+      transform: scale(1.05);
+    }
+
+    .bean-roast-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(9, 8, 7, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--panel-border);
+    }
+
+    .bean-body {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .bean-name {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .bean-notes {
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .bean-desc {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .bean-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--panel-border);
+    }
+
+    .bean-price {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Interactive Sensory Lab (Flavor Finder) */
+    .sensory-lab {
+      background: linear-gradient(145deg, #161412 0%, #0d0c0a 100%);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .slider-group {
+      margin-bottom: 2rem;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .slider-label {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .slider-val {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .custom-range {
+      width: 100%;
+      height: 6px;
+      background: var(--canvas-subtle);
+      border-radius: 3px;
+      outline: none;
+      -webkit-appearance: none;
+      border: 1px solid var(--panel-border);
+    }
+
+    .custom-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--accent-glow);
+      transition: transform 0.2s ease;
+    }
+
+    .custom-range::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .curator-result-card {
+      background: rgba(9, 8, 7, 0.6);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .curator-result-title {
+      font-size: 1.6rem;
+      color: var(--accent);
+    }
+
+    .curator-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 0.5rem 0;
+    }
+
+    .stat-box {
+      background: var(--panel);
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--panel-border);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Craft & Science Grid */
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .philosophy-card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius-md);
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+
+    .philosophy-card .step-num {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: rgba(212, 175, 55, 0.18);
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .philosophy-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .philosophy-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* Subscription & Tasting Kit CTA */
+    .cta-banner {
+      background: radial-gradient(circle at 50% 0%, #201c18 0%, #0d0c0a 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 4.5rem 3rem;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 1rem;
+    }
+
+    .cta-banner p {
+      max-width: 620px;
+      margin: 0 auto 2.5rem auto;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      max-width: 840px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .faq-item {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--border-accent);
+    }
+
+    .faq-question {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      user-select: none;
+    }
+
+    .faq-toggle-icon {
+      font-size: 1.2rem;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--transition-smooth), padding 0.4s ease;
+      padding: 0 2rem;
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding-bottom: 1.5rem;
+    }
+
+    /* Order / Booking Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 8, 7, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      background: var(--panel);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 520px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s var(--transition-smooth);
+    }
+
+    .modal-backdrop.open .modal-window {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      background: var(--canvas-subtle);
+      border: 1px solid var(--panel-border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--accent);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--panel-border);
+      background: var(--canvas-subtle);
+      padding: 4.5rem 8vw 2.5rem 8vw;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 3rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .footer-info {
+      max-width: 380px;
+    }
+
+    .footer-desc {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    .footer-nav-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-nav-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-nav-col a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav-col a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(245, 239, 230, 0.05);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .nav { padding: 1.25rem 1.5rem; }
+      .nav-links { display: none; }
+      .sensory-lab { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <nav class="nav" id="mainNav">
+      <a href="#" class="brand-logo">
+        <span class="logo-title">VAPOR &amp; VELVET</span>
+        <span class="logo-sub">ARTISANAL ROASTERS</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#beans">Signature Beans</a></li>
+        <li><a href="#sensory">Sensory Lab</a></li>
+        <li><a href="#philosophy">Extraction Craft</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <button class="btn-cta" onclick="openOrderModal('Discovery Tasting Kit')">
+        Order Tasting Kit
+      </button>
+    </nav>
+  </header>
+
+  <!-- Pinned Scroll Hero Section (400vh) -->
+  <section class="hero-scroll-container" id="heroScrollContainer">
+    <div class="hero-sticky-stage" id="heroStage">
+      
+      <!-- Video & Poster Layers -->
+      <div class="hero-media-wrapper">
+        <div class="hero-poster" id="heroPoster"></div>
+        <video 
+          id="heroVideo" 
+          preload="none" 
+          muted 
+          playsinline 
+          aria-hidden="true" 
+          tabindex="-1"
+          class="hero-video">
+        </video>
+      </div>
+
+      <!-- Scrim Overlay -->
+      <div class="hero-overlay-scrim"></div>
+
+      <!-- Loading Progress Ring (Streamed Blob) -->
+      <div class="loading-ring-wrap" id="loadingWrap">
+        <svg class="loading-ring" viewBox="0 0 44 44" aria-hidden="true">
+          <circle class="ring-bg" />
+          <circle class="ring-fill" id="ringFill" />
+        </svg>
+        <span class="loading-text" id="loadingText">PREPARING EXTRACTION</span>
+      </div>
+
+      <!-- Scroll Cue -->
+      <div class="scroll-cue" id="scrollCue">
+        <span>SCROLL TO EXTRACT</span>
+        <div class="scroll-cue-arrow"></div>
+      </div>
+
+      <!-- Live Caption Bands (Synced to Scroll Progress) -->
+      <div class="hero-captions-layer">
+        
+        <!-- Band 1 (0.00 ~ 0.22) -->
+        <div class="caption-band band-center" id="band1">
+          <span class="mono-tag">CHAPTER 01 / ORIGIN</span>
+          <h1 class="band-headline">SILENT EXTRACTION</h1>
+          <p class="band-desc">짙은 어둠 속 피어오르는 아로마 연기와 한 방울의 타협 없는 순수함.</p>
+        </div>
+
+        <!-- Band 2 (0.24 ~ 0.48) -->
+        <div class="caption-band band-left" id="band2">
+          <span class="mono-tag">CHAPTER 02 / STEAM &amp; VAPOR</span>
+          <h2 class="band-headline">DENSE AROMA</h2>
+          <p class="band-desc">갓 로스팅된 원두의 오일과 열기가 응축되어 수직으로 낙하하는 에스프레소의 궤적.</p>
+        </div>
+
+        <!-- Band 3 (0.50 ~ 0.74) -->
+        <div class="caption-band band-right" id="band3">
+          <span class="mono-tag">CHAPTER 03 / VELVET CREMA</span>
+          <h2 class="band-headline">GOLDEN ALCHEMY</h2>
+          <p class="band-desc">9기압의 압력이 빚어낸 황금빛 벨벳 크레마 층이 크리스탈 잔을 부드럽게 채웁니다.</p>
+        </div>
+
+        <!-- Band 4 (0.76 ~ 1.00) -->
+        <div class="caption-band band-center" id="band4">
+          <span class="mono-tag">CHAPTER 04 / CALIBRATION</span>
+          <h2 class="band-headline">EVERY DROP, CALIBRATED</h2>
+          <p class="band-desc">완벽한 잔에 안착하는 순간, 비로소 VAPOR &amp; VELVET의 세계가 시작됩니다.</p>
+        </div>
+
+        <!-- Static Fallback (Mobile / Reduced Motion) -->
+        <div class="caption-band band-static-mobile">
+          <span class="mono-tag">ARTISANAL COFFEE ROASTERS</span>
+          <h1 class="band-headline">VAPOR &amp; VELVET</h1>
+          <p class="band-desc">스모키 아로마와 부드러운 벨벳 크레마의 미학. 극상의 다크 아티잔 스페셜티 커피.</p>
+          <div style="margin-top: 1.5rem;">
+            <button class="btn-cta" onclick="openOrderModal('Discovery Tasting Kit')">Experience Now</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Below-Fold Website -->
+
+  <!-- Section 1: Signature Beans -->
+  <section class="section-wrap" id="beans">
+    <div class="section-header center">
+      <span class="mono-tag">CURATED ROAST LINEUP</span>
+      <h2 class="section-title">SIGNATURE SELECTIONS</h2>
+      <p class="section-subtitle">정밀한 프로파일 로스팅으로 원두 본연의 오일과 황금빛 크레마를 극대화한 3종의 시그니처.</p>
+    </div>
+
+    <div class="beans-grid">
+      
+      <!-- Bean 1 -->
+      <article class="bean-card">
+        <div class="bean-img-wrap">
+          <img src="assets/bean-obsidian.jpg" alt="Obsidian Noir Roast" class="bean-img">
+          <span class="bean-roast-badge mono-tag">DARK ROAST</span>
+        </div>
+        <div class="bean-body">
+          <h3 class="bean-name">OBSIDIAN NOIR</h3>
+          <p class="bean-notes">Dark Cacao • Smoked Oak • Black Truffle</p>
+          <p class="bean-desc">흑요석처럼 짙고 윤기 나는 표면에서 뿜어져 나오는 묵직한 바디감과 다크 초콜릿의 깊은 여운.</p>
+          <div class="bean-meta">
+            <span class="bean-price">₩24,000 / 200g</span>
+            <button class="btn-cta btn-outline" onclick="openOrderModal('Obsidian Noir 200g')">Select</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bean 2 -->
+      <article class="bean-card">
+        <div class="bean-img-wrap">
+          <img src="assets/bean-amber.jpg" alt="Velvet Amber Blend" class="bean-img">
+          <span class="bean-roast-badge mono-tag">MEDIUM DARK</span>
+        </div>
+        <div class="bean-body">
+          <h3 class="bean-name">VELVET AMBER</h3>
+          <p class="bean-notes">Honeyed Toffee • Wild Cherry • Silky Crema</p>
+          <p class="bean-desc">황금빛 크레마와 달콤한 캐러멜 토피 향미가 입안 가득 실크처럼 감싸는 균형 잡힌 시그니처 블렌드.</p>
+          <div class="bean-meta">
+            <span class="bean-price">₩22,000 / 200g</span>
+            <button class="btn-cta btn-outline" onclick="openOrderModal('Velvet Amber 200g')">Select</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bean 3 -->
+      <article class="bean-card">
+        <div class="bean-img-wrap">
+          <img src="assets/brew-bloom.jpg" alt="Vapor Bloom Single Origin" class="bean-img">
+          <span class="bean-roast-badge mono-tag">LIGHT MEDIUM</span>
+        </div>
+        <div class="bean-body">
+          <h3 class="bean-name">VAPOR BLOOM</h3>
+          <p class="bean-notes">Jasmine Blossom • Bergamot • White Peach</p>
+          <p class="bean-desc">온수를 만나는 순간 피어오르는 재스민 꽃향기와 베르가모트의 섬세하고 투명한 스페셜티 싱글오리진.</p>
+          <div class="bean-meta">
+            <span class="bean-price">₩26,000 / 200g</span>
+            <button class="btn-cta btn-outline" onclick="openOrderModal('Vapor Bloom 200g')">Select</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Section 2: Interactive Sensory Lab (Flavor Finder) -->
+  <section class="section-wrap" id="sensory">
+    <div class="section-header center">
+      <span class="mono-tag">INTERACTIVE CURATOR</span>
+      <h2 class="section-title">SENSORY LAB</h2>
+      <p class="section-subtitle">당신이 원하는 산미, 바디감, 스모키 톤을 설정하면 바리스타 알고리즘이 최적의 원두와 추출법을 제안합니다.</p>
+    </div>
+
+    <div class="sensory-lab">
+      
+      <!-- Sliders -->
+      <div class="curator-controls">
+        
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Roast Depth (로스팅 깊이)</span>
+            <span class="slider-val" id="valRoast">Dark (85%)</span>
+          </div>
+          <input type="range" min="10" max="100" value="85" class="custom-range" id="sliderRoast">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Acidity Level (산미 강도)</span>
+            <span class="slider-val" id="valAcidity">Low (20%)</span>
+          </div>
+          <input type="range" min="10" max="100" value="20" class="custom-range" id="sliderAcidity">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span class="slider-label">Body &amp; Texture (바디감 &amp; 크레마)</span>
+            <span class="slider-val" id="valBody">Heavy Velvet (90%)</span>
+          </div>
+          <input type="range" min="10" max="100" value="90" class="custom-range" id="sliderBody">
+        </div>
+
+      </div>
+
+      <!-- Live Result Card -->
+      <div class="curator-result-card" id="curatorResult">
+        <span class="mono-tag">MATCHED CURATION</span>
+        <h3 class="curator-result-title" id="matchedTitle">OBSIDIAN NOIR</h3>
+        <p class="bean-desc" id="matchedDesc">묵직한 바디감과 스모키한 다크 초콜릿 풍미를 선호하시는 분께 가장 완벽한 한 잔입니다.</p>
+        
+        <div class="curator-stats">
+          <div class="stat-box">
+            <div class="stat-label">Brew Method</div>
+            <div class="stat-value" id="matchedBrew">Espresso / Moka Pot</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Water Temp</div>
+            <div class="stat-value" id="matchedTemp">92.5°C</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Ratio</div>
+            <div class="stat-value" id="matchedRatio">1 : 2.0 (18g in / 36g out)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Extraction Time</div>
+            <div class="stat-value" id="matchedTime">28 to 30 sec</div>
+          </div>
+        </div>
+
+        <button class="btn-cta" id="btnCuratorOrder" onclick="openOrderModal('Curated Selection: Obsidian Noir')">
+          Order This Match
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Craft & Science -->
+  <section class="section-wrap" id="philosophy">
+    <div class="section-header">
+      <span class="mono-tag">EXTRACTION PROTOCOL</span>
+      <h2 class="section-title">THE ARTISAN SCIENCE</h2>
+      <p class="section-subtitle">완벽한 커피는 우연이 아닌 정밀한 열역학과 추출 변수의 통제에서 탄생합니다.</p>
+    </div>
+
+    <div class="philosophy-grid">
+      
+      <div class="philosophy-card">
+        <span class="step-num">01</span>
+        <h3 class="philosophy-title">Direct Micro-Lot</h3>
+        <p class="philosophy-desc">해발 1,800m 이상 고산지대 마이크로랏 농장과 직접 계약하여 결점두 0%에 수렴하는 최상급 생두만을 엄선합니다.</p>
+      </div>
+
+      <div class="philosophy-card">
+        <span class="step-num">02</span>
+        <h3 class="philosophy-title">Infrared Roasting</h3>
+        <p class="philosophy-desc">원적외선 히팅 챔버를 통해 원두 중심부까지 열을 균일하게 전달하여 떫은맛 없이 원두 고유의 오일 텍스처를 살립니다.</p>
+      </div>
+
+      <div class="philosophy-card">
+        <span class="step-num">03</span>
+        <h3 class="philosophy-title">9-Bar Calibration</h3>
+        <p class="philosophy-desc">완벽한 유화 작용(Emulsion)으로 조밀한 마이크로 버블의 황금빛 크레마를 추출할 수 있도록 분쇄 입도를 교정합니다.</p>
+      </div>
+
+      <div class="philosophy-card">
+        <span class="step-num">04</span>
+        <h3 class="philosophy-title">48h Fresh Dispatch</h3>
+        <p class="philosophy-desc">로스팅 후 최적의 디개싱(Degassing) 안정화 기간을 거쳐 48시간 이내에 갓 볶은 신선한 원두를 산소 차단 팩에 담아 출고합니다.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4: Tasting Kit CTA Banner -->
+  <section class="section-wrap">
+    <div class="cta-banner">
+      <span class="mono-tag">LIMITED FLIGHT</span>
+      <h2>BEGIN THE TASTING FLIGHT</h2>
+      <p>3종의 시그니처 로스트(각 100g)와 감각적인 브루잉 가이드 카드가 포함된 VAPOR &amp; VELVET 디스커버리 키트를 만나보세요.</p>
+      <div class="cta-actions">
+        <button class="btn-cta" onclick="openOrderModal('Discovery Tasting Flight (3x100g)')">Order Tasting Flight (₩32,000)</button>
+        <button class="btn-cta btn-outline" onclick="openOrderModal('Monthly Roaster Subscription')">Subscribe Monthly</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Real FAQ -->
+  <section class="section-wrap" id="faq">
+    <div class="section-header center">
+      <span class="mono-tag">QUESTIONS &amp; ANSWERS</span>
+      <h2 class="section-title">FREQUENTLY ASKED</h2>
+      <p class="section-subtitle">배송, 원두 보관, 브루잉에 관한 자주 묻는 질문들을 확인하세요.</p>
+    </div>
+
+    <div class="faq-list">
+      
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>원두는 로스팅 후 언제 마시는 것이 가장 좋은가요?</span>
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          에스프레소 추출의 경우 로스팅 날짜로부터 5~14일 차에 가스가 안정되며 가장 풍성하고 묵직한 크레마가 완성됩니다. 필터 드립의 경우 3~10일 차에 가장 화사한 아로마를 즐기실 수 있습니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>에스프레소 머신이 없어도 즐길 수 있나요?</span>
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          네, 주문 시 홀빈(Whole Bean) 외에도 핸드드립용, 모카포트용, 프렌치프레스용 분쇄도를 선택하실 수 있으며, 어디서나 간편하게 추출할 수 있는 드립백 세트도 함께 제공됩니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>정기 구독은 언제든 변경하거나 취소할 수 있나요?</span>
+          <span class="faq-toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          언제든지 결제 주기 변경, 배송 일시 정지, 혹은 구독 취소가 가능합니다. 약정이나 별도의 위약금 없이 편안하게 이용하실 수 있습니다.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Order / Subscription Modal -->
+  <div class="modal-backdrop" id="orderModal" onclick="closeOrderModal(event)">
+    <div class="modal-window" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeOrderModal()">&times;</button>
+      <span class="mono-tag">ORDER &amp; SUBSCRIBE</span>
+      <h3 style="margin-top: 0.5rem; margin-bottom: 1.5rem;" id="modalProductTitle">Discovery Tasting Kit</h3>
+      
+      <form id="orderForm" onsubmit="handleOrderSubmit(event)">
+        <div class="form-group">
+          <label class="form-label">Grind Option (분쇄도)</label>
+          <select class="form-select" id="orderGrind" required>
+            <option value="wholebean">홀빈 (Whole Bean - 분쇄 안 함)</option>
+            <option value="espresso">에스프레소 머신용 (Fine)</option>
+            <option value="drip">핸드드립 / 클레버용 (Medium)</option>
+            <option value="mokapot">모카포트용 (Medium Fine)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Recipient Name (성함)</label>
+          <input type="text" class="form-input" id="orderName" placeholder="홍길동" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Contact / Phone (연락처)</label>
+          <input type="tel" class="form-input" id="orderPhone" placeholder="010-1234-5678" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Shipping Address (배송 주소)</label>
+          <input type="text" class="form-input" id="orderAddress" placeholder="배송 받으실 도로명 주소" required>
+        </div>
+
+        <button type="submit" class="btn-cta" style="width: 100%; margin-top: 1rem;">
+          Complete Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-info">
+        <a href="#" class="brand-logo">
+          <span class="logo-title">VAPOR &amp; VELVET</span>
+          <span class="logo-sub">ARTISANAL ROASTERS</span>
+        </a>
+        <p class="footer-desc">
+          침묵의 추출, 짙은 스모크 아로마, 황금빛 벨벳 크레마의 미학을 전하는 아티잔 스페셜티 로스터리.
+        </p>
+      </div>
+
+      <div class="footer-nav-col">
+        <span class="footer-nav-title">Collections</span>
+        <a href="#beans">Obsidian Noir</a>
+        <a href="#beans">Velvet Amber</a>
+        <a href="#beans">Vapor Bloom</a>
+        <a href="#beans">Tasting Flights</a>
+      </div>
+
+      <div class="footer-nav-col">
+        <span class="footer-nav-title">Experience</span>
+        <a href="#sensory">Sensory Curator</a>
+        <a href="#philosophy">Brew Protocol</a>
+        <a href="#faq">Roastery FAQ</a>
+      </div>
+
+      <div class="footer-nav-col">
+        <span class="footer-nav-title">Roastery Lab</span>
+        <span style="font-size: 0.88rem; color: var(--text-secondary);">34 Roaster St, Obsidian Valley</span>
+        <span style="font-size: 0.88rem; color: var(--text-secondary);">hello@vaporandvelvet.coffee</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 VAPOR &amp; VELVET. All rights reserved. (Fictional Artisan Concept)</span>
+      <span>Designed with Cinematic Scroll &amp; Google Flow AI</span>
+    </div>
+  </footer>
+
+  <!-- Core JavaScript: Blob Fetch + Lerp rAF Loop + Seek Gating + Sensory Lab -->
+  <script>
+    (function () {
+      // Elements
+      const heroStage = document.getElementById('heroStage');
+      const heroContainer = document.getElementById('heroScrollContainer');
+      const video = document.getElementById('heroVideo');
+      const poster = document.getElementById('heroPoster');
+      const ringFill = document.getElementById('ringFill');
+      const loadingWrap = document.getElementById('loadingWrap');
+      const loadingText = document.getElementById('loadingText');
+
+      const band1 = document.getElementById('band1');
+      const band2 = document.getElementById('band2');
+      const band3 = document.getElementById('band3');
+      const band4 = document.getElementById('band4');
+
+      // Gate check: Mobile / Reduced Motion
+      const isMobileQuery = window.matchMedia('(max-width: 768px), (prefers-reduced-motion: reduce), (pointer: coarse)');
+      
+      // Set Poster Image first
+      poster.style.backgroundImage = "url('assets/hero-poster.jpg')";
+
+      if (isMobileQuery.matches) {
+        // Fallback static hero mode
+        if (loadingWrap) loadingWrap.style.display = 'none';
+        return;
+      }
+
+      // Streamed Blob Fetch with Watchdog
+      const VIDEO_URL = 'assets/hero-scrub.mp4';
+      const TOTAL_BYTES = 2200000; // ~2.1MB
+
+      async function streamVideoBlob() {
+        try {
+          const ctrl = new AbortController();
+          let watchdog = setTimeout(() => ctrl.abort(), 20000);
+
+          const res = await fetch(VIDEO_URL, { priority: 'low', signal: ctrl.signal });
+          if (!res.ok) throw new Error('Video fetch failed: ' + res.status);
+
+          const contentLength = Number(res.headers.get('Content-Length')) || TOTAL_BYTES;
+          const reader = res.body.getReader();
+          const chunks = [];
+          let received = 0;
+
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            clearTimeout(watchdog);
+            watchdog = setTimeout(() => ctrl.abort(), 20000);
+
+            chunks.push(value);
+            received += value.length;
+            const progress = Math.min(1, received / contentLength);
+            const offset = Math.round(113 * (1 - progress));
+            ringFill.style.setProperty('--ld', offset);
+          }
+
+          clearTimeout(watchdog);
+          ringFill.style.setProperty('--ld', 0);
+
+          const blob = new Blob(chunks, { type: 'video/mp4' });
+          video.src = URL.createObjectURL(blob);
+          video.load();
+
+          video.addEventListener('canplaythrough', () => {
+            heroStage.classList.add('video-ready');
+            updateScrollTarget();
+          }, { once: true });
+
+        } catch (err) {
+          console.warn('Falling back to static poster due to fetch error:', err);
+          if (loadingWrap) loadingWrap.style.display = 'none';
+        }
+      }
+
+      streamVideoBlob();
+
+      // Lerp rAF Scroll Scrubbing Engine
+      let targetProgress = 0;
+      let currentProgress = 0;
+      let rafId = null;
+      let lastTick = 0;
+      let seekBusy = false;
+      let pendingTargetTime = null;
+
+      function getScrollProgress() {
+        const rect = heroContainer.getBoundingClientRect();
+        const totalDist = rect.height - window.innerHeight;
+        if (totalDist <= 0) return 0;
+        const currentY = -rect.top;
+        return Math.max(0, Math.min(1, currentY / totalDist));
+      }
+
+      function updateScrollTarget() {
+        targetProgress = getScrollProgress();
+        if (!rafId) {
+          lastTick = performance.now();
+          rafId = requestAnimationFrame(tick);
+        }
+      }
+
+      function requestGatedSeek(targetTime) {
+        if (!video.duration || isNaN(video.duration)) return;
+        if (seekBusy) {
+          pendingTargetTime = targetTime;
+          return;
+        }
+        seekBusy = true;
+        video.currentTime = targetTime;
+      }
+
+      video.addEventListener('seeked', () => {
+        seekBusy = false;
+        if (pendingTargetTime !== null) {
+          const next = pendingTargetTime;
+          pendingTargetTime = null;
+          requestGatedSeek(next);
+        }
+      });
+
+      video.addEventListener('error', () => {
+        seekBusy = false;
+        pendingTargetTime = null;
+      });
+
+      function tick(now) {
+        const dt = Math.min(100, now - (lastTick || now));
+        lastTick = now;
+        const k = 0.18; // Smoothing factor
+        
+        currentProgress += (targetProgress - currentProgress) * (1 - Math.pow(1 - k, dt / 16.667));
+
+        if (Math.abs(targetProgress - currentProgress) < 0.0004) {
+          currentProgress = targetProgress;
+          rafId = null;
+        } else {
+          rafId = requestAnimationFrame(tick);
+        }
+
+        // Seek video
+        if (video.duration) {
+          requestGatedSeek(currentProgress * video.duration);
+        }
+
+        // Update Caption Bands
+        updateCaptionBands(currentProgress);
+      }
+
+      function updateCaptionBands(p) {
+        // Band 1: 0.00 ~ 0.22
+        band1.classList.toggle('active', p >= 0.00 && p < 0.22);
+        // Band 2: 0.24 ~ 0.48
+        band2.classList.toggle('active', p >= 0.24 && p < 0.48);
+        // Band 3: 0.50 ~ 0.74
+        band3.classList.toggle('active', p >= 0.50 && p < 0.74);
+        // Band 4: 0.76 ~ 1.00
+        band4.classList.toggle('active', p >= 0.76 && p <= 1.00);
+      }
+
+      window.addEventListener('scroll', updateScrollTarget, { passive: true });
+      window.addEventListener('resize', updateScrollTarget, { passive: true });
+
+    })();
+
+    // Interactive Sensory Lab (Curator Algorithm)
+    (function () {
+      const sliderRoast = document.getElementById('sliderRoast');
+      const sliderAcidity = document.getElementById('sliderAcidity');
+      const sliderBody = document.getElementById('sliderBody');
+
+      const valRoast = document.getElementById('valRoast');
+      const valAcidity = document.getElementById('valAcidity');
+      const valBody = document.getElementById('valBody');
+
+      const matchedTitle = document.getElementById('matchedTitle');
+      const matchedDesc = document.getElementById('matchedDesc');
+      const matchedBrew = document.getElementById('matchedBrew');
+      const matchedTemp = document.getElementById('matchedTemp');
+      const matchedRatio = document.getElementById('matchedRatio');
+      const matchedTime = document.getElementById('matchedTime');
+      const btnCuratorOrder = document.getElementById('btnCuratorOrder');
+
+      function updateCurator() {
+        const roast = parseInt(sliderRoast.value);
+        const acidity = parseInt(sliderAcidity.value);
+        const body = parseInt(sliderBody.value);
+
+        valRoast.textContent = roast > 70 ? `Dark (${roast}%)` : (roast > 40 ? `Medium (${roast}%)` : `Light (${roast}%)`);
+        valAcidity.textContent = acidity > 60 ? `Bright (${acidity}%)` : (acidity > 35 ? `Balanced (${acidity}%)` : `Subtle (${acidity}%)`);
+        valBody.textContent = body > 70 ? `Heavy Velvet (${body}%)` : (body > 40 ? `Medium Silk (${body}%)` : `Clean Tea-like (${body}%)`);
+
+        if (roast >= 70 || body >= 75) {
+          matchedTitle.textContent = "OBSIDIAN NOIR";
+          matchedDesc.textContent = "묵직한 바디감과 스모키한 다크 카카오의 깊은 여운을 선호하시는 분께 완벽한 매칭입니다.";
+          matchedBrew.textContent = "Espresso / Moka Pot";
+          matchedTemp.textContent = "92.0°C";
+          matchedRatio.textContent = "1 : 2.0 (18g / 36g)";
+          matchedTime.textContent = "28 to 30 sec";
+          btnCuratorOrder.setAttribute('onclick', "openOrderModal('Curated Selection: Obsidian Noir')");
+        } else if (acidity >= 60 || roast <= 45) {
+          matchedTitle.textContent = "VAPOR BLOOM";
+          matchedDesc.textContent = "화사한 재스민 꽃향기와 베르가모트의 산뜻하고 투명한 산미를 선호하시는 분을 위한 싱글오리진.";
+          matchedBrew.textContent = "Pour-Over Dripper";
+          matchedTemp.textContent = "94.5°C";
+          matchedRatio.textContent = "1 : 15.5 (20g / 310g)";
+          matchedTime.textContent = "2 min 40 sec";
+          btnCuratorOrder.setAttribute('onclick', "openOrderModal('Curated Selection: Vapor Bloom')");
+        } else {
+          matchedTitle.textContent = "VELVET AMBER";
+          matchedDesc.textContent = "부드러운 크레마, 캐러멜 토피의 달콤한 단맛과 은은한 과일 산미가 절묘한 조화를 이루는 블렌드.";
+          matchedBrew.textContent = "Aeropress / Filter";
+          matchedTemp.textContent = "93.0°C";
+          matchedRatio.textContent = "1 : 14.0 (18g / 250g)";
+          matchedTime.textContent = "2 min 10 sec";
+          btnCuratorOrder.setAttribute('onclick', "openOrderModal('Curated Selection: Velvet Amber')");
+        }
+      }
+
+      sliderRoast.addEventListener('input', updateCurator);
+      sliderAcidity.addEventListener('input', updateCurator);
+      sliderBody.addEventListener('input', updateCurator);
+    })();
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const parent = q.parentElement;
+        const isOpen = parent.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('open'));
+        if (!isOpen) parent.classList.add('open');
+      });
+    });
+
+    // Order Modal Logic
+    const modal = document.getElementById('orderModal');
+    const modalTitle = document.getElementById('modalProductTitle');
+
+    function openOrderModal(productName) {
+      modalTitle.textContent = productName || 'Discovery Tasting Kit';
+      modal.classList.add('open');
+    }
+
+    function closeOrderModal(e) {
+      if (!e || e.target === modal || e.target.classList.contains('modal-close')) {
+        modal.classList.remove('open');
+      }
+    }
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      const product = modalTitle.textContent;
+      const grind = document.getElementById('orderGrind').options[document.getElementById('orderGrind').selectedIndex].text;
+      const name = document.getElementById('orderName').value;
+      
+      alert(`[주문 접수 완료]\n\n상품: ${product}\n분쇄도: ${grind}\n주문자: ${name}님\n\n48시간 이내에 갓 볶은 신선한 원두가 발송됩니다. 감사합니다!`);
+      modal.classList.remove('open');
+      document.getElementById('orderForm').reset();
+    }
+  </script>
+</body>
+</html>
